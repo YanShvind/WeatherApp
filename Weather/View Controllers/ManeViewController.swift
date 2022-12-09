@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ManeViewController: UIViewController {
     
     private let createView: CreateView = {
         let view = CreateView()
@@ -23,6 +23,11 @@ class ViewController: UIViewController {
         networkWeatherManager.delegate = self
         createView.delegate = self
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.bullet.rectangle.portrait"),
+                                                           style: .plain,
+                                                            target: self,
+                                                            action: #selector(openListButtonPressed))
+        
         networkWeatherManager.fetchCurrentWeather(forCity: "Moscow")
     }
 
@@ -31,7 +36,8 @@ class ViewController: UIViewController {
         self.view = createView
     }
     
-    func updateWithInterface(weather: CurrentWeather) {
+    private func updateWithInterface(weather: CurrentWeather) {
+        
         DispatchQueue.main.async {
             self.createView.cityNameLabel.text = weather.cityName
             self.createView.temperatureLabel.text = "\(weather.temperatureSrting)°C"
@@ -41,15 +47,21 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: NetworkWeatherManagerDelegate {
+extension ManeViewController: NetworkWeatherManagerDelegate {
+    
     func updateInterface(_: NetworkWeatherManager, with currentWeather: CurrentWeather) {
         updateWithInterface(weather: currentWeather)
     }
 }
 
-extension ViewController: CreateViewOutput {
-    func buttonPressed() {
-        
+extension ManeViewController: CreateViewOutput {
+    
+    @objc func openListButtonPressed() {
+        let controller = ListOfCitiesViewController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func searchButtonPressed() {
         self.presentSearchAlertController(withTitle: "Enter city name", message: nil, style: .alert) { city in
             self.networkWeatherManager.fetchCurrentWeather(forCity: city)
         }

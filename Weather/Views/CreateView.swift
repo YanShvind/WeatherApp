@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CreateViewOutput: AnyObject {
-    func buttonPressed()
+    func searchButtonPressed()
 }
 
 final class CreateView: UIView {
@@ -43,7 +43,7 @@ final class CreateView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        searchButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
         
         configViewComponents()
     }
@@ -52,9 +52,10 @@ final class CreateView: UIView {
         fatalError("")
     }
     
-    @objc private func buttonPressed() {
+    @objc
+    private func searchButtonPressed() {
         
-        delegate?.buttonPressed()
+        delegate?.searchButtonPressed()
     }
     
     private func configViewComponents() {
@@ -66,9 +67,8 @@ final class CreateView: UIView {
         addSubview(searchButton)
         
         NSLayoutConstraint.activate([
-            
-            maneImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
-            maneImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
+            maneImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
+            maneImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
             maneImage.topAnchor.constraint(equalTo: topAnchor, constant: 70),
             maneImage.heightAnchor.constraint(equalToConstant: 200),
             
