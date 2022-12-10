@@ -9,7 +9,9 @@ import UIKit
 
 final class ListOfCitiesViewController: UIViewController {
     
-    private let cityNameArray = ["Москва", "Санкт-Петербург", "Новосибирск", "Екатеринбург", "Казань", "Нижний Новгород", "Челябинск", "Омск", "Самара", "Ростов-на-Дону", "Уфа", "Красноярск", "Пермь", "Воронеж", "Волгоград"]
+    private var networkWeatherManager = NetworkWeatherManager()
+    
+    private let cityNameArray = ["Moscow", "Saint Petersburg", "Novosibirsk", "Yekaterinburg", "Kazan", "Nizhny Novgorod", "Chelyabinsk", "Omsk", "Samara", "Rostov-on-Don", "Ufa", "Krasnoyarsk", "Perm", "Voronezh", "Volgograd"]
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -17,6 +19,8 @@ final class ListOfCitiesViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    var test1 = "Lol"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +31,7 @@ final class ListOfCitiesViewController: UIViewController {
         tableView.register(ListOfCitiesTableViewCell.self, forCellReuseIdentifier: ListOfCitiesTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
-        
+            
         self.view.addSubview(tableView)
         setConstrains()
     }
@@ -49,6 +53,7 @@ extension ListOfCitiesViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(cityNameArray[indexPath.row])")
+        self.networkWeatherManager.fetchCurrentWeather(forCity: cityNameArray[indexPath.row])
     }
 }
 

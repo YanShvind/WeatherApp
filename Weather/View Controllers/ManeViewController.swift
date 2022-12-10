@@ -9,12 +9,17 @@ import UIKit
 
 final class ManeViewController: UIViewController {
     
-    private let createView: CreateView = {
+    private var networkWeatherManager = NetworkWeatherManager()
+    
+    let createView: CreateView = {
         let view = CreateView()
         return view
     }()
     
-    private var networkWeatherManager = NetworkWeatherManager()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +53,6 @@ final class ManeViewController: UIViewController {
 }
 
 extension ManeViewController: NetworkWeatherManagerDelegate {
-    
     func updateInterface(_: NetworkWeatherManager, with currentWeather: CurrentWeather) {
         updateWithInterface(weather: currentWeather)
     }
@@ -56,7 +60,8 @@ extension ManeViewController: NetworkWeatherManagerDelegate {
 
 extension ManeViewController: CreateViewOutput {
     
-    @objc func openListButtonPressed() {
+    @objc
+    private func openListButtonPressed() {
         let controller = ListOfCitiesViewController()
         navigationController?.pushViewController(controller, animated: true)
     }

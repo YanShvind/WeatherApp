@@ -19,7 +19,8 @@ extension ManeViewController {
             guard let cityName = textField?.text else { return }
             if cityName != "" {
                 let city = cityName.split(separator: " ").joined(separator: "%20")
-                complectionHandler(city)            }
+                complectionHandler(city)
+            }
         }
         let cancel = UIAlertAction(title: "cancel", style: .cancel)
         
