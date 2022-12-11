@@ -15,20 +15,18 @@ final class CreateView: UIView {
     
     weak var delegate: CreateViewOutput?
 
-    let maneImage: UIImageView = {
-        let image = UIImageView()
-        image.tintColor = .systemCyan
-        image.clipsToBounds = true
-        image.contentMode = .scaleAspectFit
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
+    let weatherImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.tintColor = .systemCyan
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     let temperatureLabel =  UILabel(text: "", font: UIFont(name: "Avenir Next Demi Bold", size: 50), alignment: .center)
-    
-    let cityNameLabel = UILabel(text: "Moscow", font: UIFont(name: "San Francisco", size: 30), alignment: .right)
-    
-    let feelsLikeLabel = UILabel(text: "", font: UIFont(name: "San Francisco", size: 30), alignment: .center)
+    let cityNameLabel = UILabel(text: "Moscow", font: UIFont(name: "San Francisco", size: 17), alignment: .right)
+    let feelsLikeLabel = UILabel(text: "", font: UIFont(name: "San Francisco", size: 17), alignment: .center)
 
     private let searchButton: UIButton = {
         let button = UIButton()
@@ -57,22 +55,24 @@ final class CreateView: UIView {
         
         delegate?.searchButtonPressed()
     }
-    
+}
+
+extension CreateView {
     private func configViewComponents() {
-        
-        addSubview(maneImage)
+
+        addSubview(weatherImageView)
         addSubview(temperatureLabel)
         addSubview(cityNameLabel)
         addSubview(feelsLikeLabel)
         addSubview(searchButton)
         
         NSLayoutConstraint.activate([
-            maneImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
-            maneImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
-            maneImage.topAnchor.constraint(equalTo: topAnchor, constant: 70),
-            maneImage.heightAnchor.constraint(equalToConstant: 200),
+            weatherImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
+            weatherImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
+            weatherImageView.topAnchor.constraint(equalTo: topAnchor, constant: 70),
+            weatherImageView.heightAnchor.constraint(equalToConstant: 200),
             
-            temperatureLabel.topAnchor.constraint(equalTo: maneImage.bottomAnchor, constant: 10),
+            temperatureLabel.topAnchor.constraint(equalTo: weatherImageView.bottomAnchor, constant: 10),
             temperatureLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             temperatureLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             temperatureLabel.heightAnchor.constraint(equalToConstant: 50),

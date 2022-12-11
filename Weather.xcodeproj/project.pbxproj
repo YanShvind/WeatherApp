@@ -80,11 +80,11 @@
 		6D497E752940FFC400FF5706 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				6D71CFE6294101D700380033 /* Extensions */,
-				6D71CFE5294101CF00380033 /* Views */,
 				6D71CFE4294101B800380033 /* Models */,
+				6D71CFE5294101CF00380033 /* Views */,
 				6D71CFE32941019600380033 /* View Controllers */,
 				6D2EB1FB294322FC000461D7 /* Cell */,
+				6D71CFE6294101D700380033 /* Extensions */,
 				6D71CFE22941017C00380033 /* Supporting Files */,
 				6D497E7F2940FFC500FF5706 /* Assets.xcassets */,
 				6D497E812940FFC500FF5706 /* LaunchScreen.storyboard */,

@@ -16,38 +16,32 @@ final class ManeViewController: UIViewController {
         return view
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         networkWeatherManager.delegate = self
         createView.delegate = self
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.bullet.rectangle.portrait"),
                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(openListButtonPressed))
+                                                           target: self,
+                                                           action: #selector(openListButtonPressed))
         
         networkWeatherManager.fetchCurrentWeather(forCity: "Moscow")
     }
-
+    
     override func loadView() {
         
         self.view = createView
     }
     
     private func updateWithInterface(weather: CurrentWeather) {
-        
         DispatchQueue.main.async {
             self.createView.cityNameLabel.text = weather.cityName
-            self.createView.temperatureLabel.text = "\(weather.temperatureSrting)°C"
+            self.createView.temperatureLabel.text = "\(weather.temperatureSrting)˚C"
             self.createView.feelsLikeLabel.text = "feelsLike: \(weather.feelsLikeTemperatureSrting)"
-            self.createView.maneImage.image = UIImage(systemName: weather.systemIconNameString)
+            self.createView.weatherImageView.image = UIImage(systemName: weather.systemIconNameString)
         }
     }
 }

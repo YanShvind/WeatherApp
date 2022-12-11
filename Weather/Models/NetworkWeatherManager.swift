@@ -11,7 +11,7 @@ protocol NetworkWeatherManagerDelegate: AnyObject {
     func updateInterface(_: NetworkWeatherManager, with currentWeather: CurrentWeather)
 }
 
-class NetworkWeatherManager {
+final class NetworkWeatherManager {
     
     weak var delegate: NetworkWeatherManagerDelegate?
     

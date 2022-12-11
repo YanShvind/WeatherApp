@@ -31,7 +31,7 @@ final class ListOfCitiesViewController: UIViewController {
         tableView.register(ListOfCitiesTableViewCell.self, forCellReuseIdentifier: ListOfCitiesTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
-            
+                    
         self.view.addSubview(tableView)
         setConstrains()
     }
